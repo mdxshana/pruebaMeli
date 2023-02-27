@@ -49,7 +49,7 @@ export const Detail = () => {
             <span className="condition">
               {product?.condition} - {product?.sold_quantity} vendidos
             </span>
-            <h3 className="mt-2">{product?.title}</h3>
+            <h1 className="mt-2">{product?.title}</h1>
             <p className="price my-5">
               $ {product?.price.decimals} <sup className="sup">00</sup>
             </p>
