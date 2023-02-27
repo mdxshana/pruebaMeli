@@ -1,4 +1,3 @@
-import { ProductDto } from "../model/ProductDto";
 const urlBase = "http://localhost:8000/api";
 
 export const getProducts = async (search: string) => {

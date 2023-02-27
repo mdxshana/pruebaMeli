@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { Breadcrumb } from "../components/breadcrumb/Breadcrumb";
 import "./layout.scss";
@@ -10,7 +10,7 @@ export const Layout = () => {
   const navigate = useNavigate();
   const filter = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (search.length && search.trim() != "") {
+    if (search.length && search.trim() !== "") {
       setLocalCategories([]);
       navigate(`/items?q=${search}`);
       setSearch("");

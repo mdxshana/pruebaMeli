@@ -6,7 +6,6 @@ import "./detail.scss";
 import { formatNumber } from "../../helper/utils";
 import { BreadcrumbContext } from "../../context/BreadcrumbContext";
 import { getProduct } from "../../api/products";
-import { useQuery } from "react-query";
 
 export const Detail = () => {
   const { id } = useParams();
@@ -37,7 +36,7 @@ export const Detail = () => {
     <div className="row detail content">
       <div className="col-lg-9 col-md-8">
         <div className="picture">
-          <img src={product?.picture} />
+          <img src={product?.picture} alt="imagen producto" />
         </div>
         <div className="detail">
           <h3>Descripción del producto</h3>
