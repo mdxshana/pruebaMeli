@@ -1,0 +1,41 @@
+@import "./../styles/default.scss";
+
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+  background-color: $primaryMeli;
+  padding: 15px 0;
+  img.logo {
+    width: 80px;
+    padding-right: 20px;
+  }
+  .filter {
+    width: 95%;
+    form {
+      display: block;
+      position: relative;
+    }
+    &__input {
+      width: 100%;
+      height: 38px;
+      padding: 2px 10px;
+      border: none;
+    }
+    &__btn {
+      position: absolute;
+      height: 38px;
+      border: none;
+      right: 0;
+    }
+  }
+}
+
+main {
+  background-color: $secondaryMeli;
+  min-height: calc(100vh - 76px);
+  .content {
+    background-color: #fff;
+  }
+}

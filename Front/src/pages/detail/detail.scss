@@ -1,0 +1,44 @@
+@import "./../../styles/default.scss";
+
+.detail {
+  .picture {
+    text-align: center;
+    img {
+      min-height: 450px;
+    }
+  }
+
+  .detail {
+    h3 {
+      margin: 20px 0;
+      font-size: 25px;
+    }
+    .description {
+      color: $terMeli;
+      width: 95%;
+    }
+  }
+
+  .rigthPanel {
+    .condition {
+      font-size: 12px;
+    }
+    h3 {
+      font-size: 25px;
+    }
+    .price {
+      font-size: 40px;
+      .sup {
+        font-size: 22px;
+        margin-left: -8px;
+      }
+    }
+    button {
+      width: 100%;
+    }
+  }
+
+  &.content {
+    padding: 20px 15px;
+  }
+}
