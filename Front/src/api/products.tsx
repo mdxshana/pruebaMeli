@@ -1,4 +1,5 @@
 import { ProductListDto } from "../model/ProductListDto";
+import { ProductDto } from "../model/ProductDto";
 const urlBase = "http://localhost:8000/api";
 
 export const getProducts = async (search: string) => {
@@ -6,6 +7,7 @@ export const getProducts = async (search: string) => {
   return (await response.json()) as ProductListDto;
 };
 
-export const getProduct = (id: string) => {
-  return fetch(`${urlBase}/items/${id}`);
+export const getProduct = async (id: string) => {
+  const response = await fetch(`${urlBase}/items/${id}`);
+  return (await response.json()) as ProductDto;
 };
