@@ -1,25 +1,29 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
-import { Product } from "../../model/Product";
 import { ProductDto } from "../../model/ProductDto";
 import "./detail.scss";
 import { formatNumber } from "../../helper/utils";
 import { BreadcrumbContext } from "../../context/BreadcrumbContext";
 import { getProduct } from "../../api/products";
 import { useQuery } from "@tanstack/react-query";
+import { Product } from "../../model/Product";
 
 export const Detail = () => {
   const { id } = useParams();
   const { setLocalCategories } = useContext(BreadcrumbContext);
 
-  const query = useQuery<ProductDto, Error>(["search", id], async () => {
-    return await getProduct(id as string);
-  });
+  const query = useQuery<ProductDto, Error>(
+    ["search", id],
+    async () => {
+      return await getProduct(id as string);
+    },
+    { staleTime: 1000 * 60 }
+  );
 
   if (query.isLoading) {
     return <div>Cargando</div>;
   } else {
-    const product = query.data?.item;
+    const product: Product = query.data?.item!;
     setLocalCategories(query.data?.categories!);
     return (
       <div className="row detail content">
