@@ -9,7 +9,6 @@ interface Props {
 }
 
 export const Item = ({ product }: Props) => {
-  product.price.decimals = formatNumber(product.price.decimals);
   return (
     <>
       <div className="col-12 item">
@@ -19,7 +18,7 @@ export const Item = ({ product }: Props) => {
           </Link>
           <div className="detail">
             <div className="price">
-              <p>$ {product.price.decimals}</p>
+              <p>$ {formatNumber(product.price.decimals)}</p>
               {product.free_shipping && (
                 <img
                   className="free"

@@ -5,39 +5,35 @@ import { ProductListDto } from "../../model/ProductListDto";
 import { Product } from "../../model/Product";
 import { BreadcrumbContext } from "../../context/BreadcrumbContext";
 import { getProducts } from "../../api/products";
+import { useQuery } from "@tanstack/react-query";
 
 export const Searchs = () => {
   let [searchParams] = useSearchParams();
   const { setLocalCategories } = useContext(BreadcrumbContext);
-
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
-
+  const [termino, settermino] = useState<string>("");
   useEffect(() => {
-    const query = searchParams.get("q");
-    setLoading(true);
-    getProducts(query as string)
-      .then((resp) => resp.json())
-      .then((resp: ProductListDto) => {
-        setProducts(resp.items);
-        setLocalCategories(resp.categories);
-        setLoading(false);
-      });
+    settermino(searchParams.get("q") as string);
   }, [searchParams]);
-
+  const query = useQuery<ProductListDto, Error>(
+    ["search", termino],
+    async () => {
+      return await getProducts(termino);
+    }
+  );
   const getItem = (product: Product, index: number) => {
     return <Item product={product} key={product.id}></Item>;
   };
-
-  if (loading) {
+  if (query.isLoading) {
     return <div>Cargando</div>;
   }
-
-  if (products.length) {
+  if (query.data?.items.length) {
+    setLocalCategories(query.data.categories);
     return (
       <>
         <div className="row">
-          {products.map((pr: Product, index: number) => getItem(pr, index))}
+          {query.data?.items.map((pr: Product, index: number) =>
+            getItem(pr, index)
+          )}
         </div>
       </>
     );
